@@ -28,7 +28,7 @@ public class HomeController {
 
     @PostMapping("/register")
     @Transactional
-    public String register(@ModelAttribute Registration registration, Model model) {
+    public String register(@ModelAttribute("registration") Registration registration, Model model) {
         repository.save(registration);
         model.addAttribute("message", "Registration successful!");
         List<Registration> allRegistrations = repository.findAll();

@@ -16,18 +16,20 @@
   <main>
     <section id="registration">
       <h2>Register Your Home</h2>
-      <form id="registration-form">
+     
+      <form action="#" th:action="@{/register}" th:object="${registration}"
+			method="POST">
         <label for="name">Name:</label>
-        <input type="text" id="name" placeholder="Enter your name" required>
+        <input type="text" th:field="*{name}" placeholder="Enter your name" required>
 
         <label for="phone">Phone:</label>
-        <input type="tel" id="phone" placeholder="Enter your phone number" required>
+        <input type="tel" th:field="*{phone}" placeholder="Enter your phone number" required>
 
         <label for="address">Address:</label>
-        <textarea id="address" placeholder="Enter your address" required></textarea>
+        <textarea th:field="*{address}" placeholder="Enter your address" required></textarea>
 
         <label for="schedule">Preferred Collection Day:</label>
-        <select id="schedule" required>
+        <select th:field="*{schedule}"required>
           <option value="monday">Monday</option>
           <option value="wednesday">Wednesday</option>
           <option value="friday">Friday</option>
