@@ -20,7 +20,7 @@ function initMap() {
   });
 }
 
-// Handle Form Submission
+/*// Handle Form Submission
 document.getElementById("registration-form").addEventListener("submit", function (e) {
   e.preventDefault();
   
@@ -32,4 +32,4 @@ document.getElementById("registration-form").addEventListener("submit", function
   console.log({ name, phone, address, schedule });
 
   alert("Registration successful! We will contact you soon.");
-});
+});*/

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+ <title>Nirmalyam Collection App</title>
+ <link rel="stylesheet" href="styles.css">
+ <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+</head>
+<script type="text/javascript">
+	function deleteUser(phone) {
+		alert('triggred Delete button ' + phone);
+		document.forms[0].action = "${pageContext.request.contextPath}/deleterecord?phone="+ phone;
+		document.forms[0].method = "post";
+		document.forms[0].submit();
+		//submit to deleteUser action from here 
+	}
+
+	function editUser(phone) {
+		
+		alert('triggered Edit button ' + phone);
+		document.forms[0].action = "${pageContext.request.contextPath}/editrecord?phone="+ phone;
+		document.forms[0].method = "post";
+		document.forms[0].submit(); 
+	} 
+</script>
+<style>
+  
+        table {
+            border-collapse: collapse;
+            width: 50%;  /* You can adjust the width */
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+    </style>
+<body>
+<header>
+    <h1>Nirmalyam Collection</h1>
+    <p>Collecting your divine offerings responsibly.</p>
+  </header>
+<body>
+<form action="">
+	<!-- Need to writh for each in jsp to iterate userList -->
+	<table border="3">
+	 <thead>
+		<tr>
+		 	<th bgcolor="#FF000">Name</th>
+		 	<th bgcolor="#FF000">Phone</th>
+		 	<th bgcolor="#FF000">Address</th>
+		 	<th bgcolor="#FF000">Schedule</th>
+		</tr>
+		 </thead>
+	<tbody>
+	  <!-- Iterate over the list -->
+            <tr th:each="item : ${registrations}">
+                <td th:text="${item.name}"></td>
+                <td th:text="${item.phone}"></td>
+                <td th:text="${item.address}"></td>
+                 <td th:text="${item.schedule}"></td>
+                 <td><input type="button" onclick="editUser('${userObject.phone}')" value="Edit"></td>
+				<td><input type="button" onclick="deleteUser('${userObject.phone}')" value="Delete"></td>
+            </tr>
+		 <!--  <c:forEach var="userObject" items="${registrations}">
+			<tr>
+				<td>${userObject.name}</td>
+				<td>${userObject.phone}</td>
+				<td>${userObject.address}</td>
+				<td>${userObject.schedule}</td>
+				<td><input type="button" onclick="editUser('${userObject.phone}')" value="Edit"></td>
+				<td><input type="button" onclick="deleteUser('${userObject.phone}')" value="Delete"></td>
+			</tr>
+		  </c:forEach> -->
+		    </tbody>
+	</table>
+	   
+	
+
+</form>
+  <section id="map">
+      <h2>Pin Your Location</h2>
+      <div id="map-container"></div>
+    </section>
+    
+    <footer>
+    <p>&copy; 2024 Nirmalyam Collection Service</p>
+  </footer>
+</body>
+
+</html>
